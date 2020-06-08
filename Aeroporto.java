@@ -1,11 +1,15 @@
 public class Aeroporto {
     private String city;
     private String siglaAer;
+    private int codAer;
+    private ListVoos voos; 
 
-    public Aeroporto(String city,String siglaAer)
+    public Aeroporto (String city,String siglaAer, ListVoos voos, int cod)
     {
         setCity(city);
         setSiglaAer(siglaAer);
+        setVoos(voos);
+        setCod(cod);
     }
 
     public void setCity(String city){
@@ -17,12 +21,28 @@ public class Aeroporto {
         this.siglaAer = siglaAer;
     }
 
+    public void setVoos(ListVoos voos){
+        this.voos = voos;
+    }
+
+    public void setCod(int cod){
+        this.codAer = cod;
+    }
+
+    public ListVoos getListVoos(){
+        return this.voos;
+    }
+
     public String getCity(){
         return this.city;
     }
 
     public String getSiglaAer(){
         return this.siglaAer;
+    }
+
+    public int getCod(){
+        return this.codAer;
     }
 
     public String toString(){
@@ -36,10 +56,13 @@ public class Aeroporto {
 
         int ret = 2;
 
-        ret = ret*7 + Integer(Integer.parseInt(this.city)).hashCode();
+        ret = ret*PRIMO + this.city.hashCode();
+        ret = ret*PRIMO + this.siglaAer.hashCode();
 
         if (ret<0) ret = -ret;
 
         return ret;
     }
+
+
 }

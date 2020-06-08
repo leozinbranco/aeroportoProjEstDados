@@ -348,9 +348,9 @@ public class ListaSimplesDesordenada <X>
         int ret=666; // qualquer inteiro positivo serve
 
         for (No atual=this.primeiro;
-             atual!=null;
-             atual=atual.getProx())
-             ret = 17*ret + atual.getInfo().hashCode();
+            atual!=null;
+            atual=atual.getProx())
+            ret = 17*ret + atual.getInfo().hashCode();
 
         if (ret<0) ret = -ret;
 

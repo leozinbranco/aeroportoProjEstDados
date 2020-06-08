@@ -1,27 +1,27 @@
 import java.lang.reflect.*;
 
-public class ListaSimplesDesordenada <X>
-{
-    private class No
+public class ListVoos<Voo> {
+
+ private class No
     {
-        private X  info;
+        private Aeroporto info;
         private No prox;
 
-        public No (X i, No p)
+        public No (Aeroporto aero, No p)
         {
-            this.info = i;
+            this.aeroporto = aero;
             this.prox = p;
         }
 
-        public No (X i)
+        public No (Aeroporto aero)
         {
-            this.info = i;
+            this.aeroporto = aero;
             this.prox = null;
         }
 
-        public X getInfo ()
+        public Aeroporto - ()
         {
-            return this.info;
+            return this.aeroporto;
         }
 
         public No getProx ()
@@ -29,9 +29,9 @@ public class ListaSimplesDesordenada <X>
             return this.prox;
         }
 
-        public void setInfo (X i)
+        public void setAeroporto (Aeroporto aero)
         {
-            this.info = i;
+            this.aeroporto = aero;
         }
 
         public void setProx (No p)
@@ -42,7 +42,7 @@ public class ListaSimplesDesordenada <X>
 
     private No primeiro, ultimo;
     
-    public ListaSimplesDesordenada ()
+    public ListVoos ()
     {
 		this.primeiro = null;
 		this.ultimo   = null;
@@ -53,16 +53,16 @@ public class ListaSimplesDesordenada <X>
         return this.primeiro==null/*&&this.ultimo==null*/;
     }
     
-    public boolean tem (X i) throws Exception
+    public boolean tem (Aeroporto aero) throws Exception
     {
-		if (i==null)
+		if (aero==null)
 		    throw new Exception ("Informacao ausente");
 		
         No atual=this.primeiro;
 
         while (atual!=null)
         {
-            if (i.equals(atual.getInfo()))
+            if (i.equals(atual.getAeroporto()))
                 return true;
                 
             atual = atual.getProx();
@@ -100,7 +100,7 @@ public class ListaSimplesDesordenada <X>
             ret = (X)metodo.invoke(x,parms);
         }
         catch (Exception erro)
-        {} // pq sei que estou chamando clone de um objeto que � Cloneable e, portanto, nao h� risco do m�todo n�o existir ou de ser chamado com parametros errado
+        {} // pq sei que estou chamando clone de um objeto que é Cloneable e, portanto, nao há risco do método não existir ou de ser chamado com parametros errado
 
         return ret;
     }
@@ -226,7 +226,7 @@ public class ListaSimplesDesordenada <X>
 
         No atual=this.primeiro;
 
-        for(;;) // FOR EVER (repete at� Exception ou return)
+        for(;;) // FOR EVER (repete até Exception ou return)
         {
             if (atual.getProx()==null)
                 throw new Exception ("Informacao inexistente");
@@ -249,12 +249,12 @@ public class ListaSimplesDesordenada <X>
     public void invertaSe ()
     {
 		if (this.primeiro==null)
-		    return; // lista vazia; nao h� o que inverter
+		    return; // lista vazia; nao há o que inverter
 		    
 		if (this.primeiro.getProx() == null)
-		    return; // lista com um elemento s�; nao ha o que inverter
+		    return; // lista com um elemento só; nao ha o que inverter
 		    
-		// tendo 2 ou mais n�s, percorre invertendo
+		// tendo 2 ou mais nós, percorre invertendo
         No anterior=null, atual=this.primeiro, seguinte=atual.getProx();
         while (seguinte!=null)
         {
@@ -278,8 +278,8 @@ public class ListaSimplesDesordenada <X>
         for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
             // preferi nao usar this.insiraNoInicio pelo bem da eficiencia,
             // economizando tempo, deixando de validar, e economizando
-            // mem�ria e tempo, deixando de clonar; e fica a pergunta:
-            // entendem porque n�o � necessario clonar? Nao entendendo,
+            // memória e tempo, deixando de clonar; e fica a pergunta:
+            // entendem porque não é necessario clonar? Nao entendendo,
             // monitoria!
             ret.primeiro = new No (atual.getInfo(),ret.primeiro);
 
@@ -343,14 +343,14 @@ public class ListaSimplesDesordenada <X>
 
     public int hashCode ()
     {
-        final int PRIMO = 13; // qualquer n�mero primo serve
+        final int PRIMO = 13; // qualquer número primo serve
         
         int ret=666; // qualquer inteiro positivo serve
 
         for (No atual=this.primeiro;
-            atual!=null;
-            atual=atual.getProx())
-            ret = 17*ret + atual.getInfo().hashCode();
+             atual!=null;
+             atual=atual.getProx())
+             ret = 17*ret + atual.getInfo().hashCode();
 
         if (ret<0) ret = -ret;
 
@@ -364,7 +364,7 @@ public class ListaSimplesDesordenada <X>
             throw new Exception ("Modelo ausente");
 
         if (modelo.primeiro==null)
-            return; // sai do construtor, pq this.primeiro ja � null
+            return; // sai do construtor, pq this.primeiro ja é null
 
         this.primeiro = new No (modelo.primeiro.getInfo());
 
@@ -390,7 +390,7 @@ public class ListaSimplesDesordenada <X>
             ret = new ListaSimplesDesordenada (this);
         }
         catch (Exception erro)
-        {} // sei que this NUNCA � null e o contrutor de copia da erro quando seu parametro � null
+        {} // sei que this NUNCA é null e o contrutor de copia da erro quando seu parametro é null
 
         return ret;
     }
