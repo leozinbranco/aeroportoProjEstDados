@@ -1,27 +1,27 @@
 import java.lang.reflect.*;
 
-public class ListVoos<Voo> {
-
- private class No
+public class ListaVoos<X> {
+   
+    private class No
     {
-        private Aeroporto info;
+        private Voo info;
         private No prox;
 
-        public No (Aeroporto aero, No p)
+        public No (Voo v, No p)
         {
-            this.aeroporto = aero;
+            this.info = v;
             this.prox = p;
         }
 
-        public No (Aeroporto aero)
+        public No (Voo v)
         {
-            this.aeroporto = aero;
+            this.info = v;
             this.prox = null;
         }
 
-        public Aeroporto - ()
+        public Voo getInfo ()
         {
-            return this.aeroporto;
+            return this.info;
         }
 
         public No getProx ()
@@ -29,20 +29,21 @@ public class ListVoos<Voo> {
             return this.prox;
         }
 
-        public void setAeroporto (Aeroporto aero)
+        public void setInfo (Voo v)
         {
-            this.aeroporto = aero;
+            this.info = v;
         }
 
         public void setProx (No p)
         {
             this.prox = p;
         }
+
     } //fim da classe No
 
     private No primeiro, ultimo;
-    
-    public ListVoos ()
+
+    public ListaVoos() 
     {
 		this.primeiro = null;
 		this.ultimo   = null;
@@ -53,16 +54,16 @@ public class ListVoos<Voo> {
         return this.primeiro==null/*&&this.ultimo==null*/;
     }
     
-    public boolean tem (Aeroporto aero) throws Exception
+    public boolean tem (X i) throws Exception
     {
-		if (aero==null)
+		if (i==null)
 		    throw new Exception ("Informacao ausente");
 		
         No atual=this.primeiro;
 
         while (atual!=null)
         {
-            if (i.equals(atual.getAeroporto()))
+            if (i.equals(atual.getInfo()))
                 return true;
                 
             atual = atual.getProx();
@@ -105,16 +106,16 @@ public class ListVoos<Voo> {
         return ret;
     }
     
-    public void insiraNoInicio (X i) throws Exception
+    public void insiraNoInicio (Voo v) throws Exception
     {
-        if (i==null)
+        if (v==null)
             throw new Exception ("Informacao ausente");
 
-        X inserir=null;
-        if (i instanceof Cloneable)
-            inserir = meuCloneDeX(i);
+        Voo inserir=null;
+        if (v instanceof Cloneable)
+            inserir = v.clone(); //meuCloneDeX(i);
         else
-            inserir = i;
+            inserir = v;
             
         this.primeiro = new No (inserir,this.primeiro);
 
@@ -122,16 +123,16 @@ public class ListVoos<Voo> {
             this.ultimo=this.primeiro;
     }
 
-    public void insiraNoFim (X i) throws Exception
+    public void insiraNoFim (Voo v) throws Exception
     {
-        if (i==null)
+        if (v==null)
             throw new Exception ("Informacao ausente");
 
-        X inserir=null;
-        if (i instanceof Cloneable)
-            inserir = meuCloneDeX(i);
+        Voo inserir=null;
+        if (v instanceof Cloneable)
+            inserir = v.clone();//meuCloneDeX(i);
         else
-            inserir = i;
+            inserir = v;
             
         if (this.ultimo==null) // && this.primeiro==null
         {
@@ -145,26 +146,26 @@ public class ListVoos<Voo> {
         }
     }
 
-    public X getDoInicio () throws Exception
+    public Voo getDoInicio () throws Exception
     {
         if (this.primeiro==null/*&&this.fim==null)*/)
             throw new Exception ("Nada a obter");
 
-        X ret = this.primeiro.getInfo();
+        Voo ret = this.primeiro.getInfo();
         if (ret instanceof Cloneable)
-            ret = meuCloneDeX (ret);
+            ret = ret.clone(); //meuCloneDeX (ret);
             
         return ret;
     }
 
-    public X getDoFim () throws Exception
+    public Voo getDoFim () throws Exception
     {
         if (this.primeiro==null/*&&this.ultimo==null)*/)
             throw new Exception ("Nada a obter");
 
-        X ret = this.ultimo.getInfo();
+        Voo ret = this.ultimo.getInfo();
         if (ret instanceof Cloneable)
-            ret = meuCloneDeX (ret);
+            ret = v.clone();//meuCloneDeX (ret);
             
         return ret;
     }
@@ -206,15 +207,15 @@ public class ListVoos<Voo> {
         this .ultimo=atual;
     }
     
-    public void remova (X i) throws Exception
+    public void remova (Voo v) throws Exception
     {
-        if (i==null)
+        if (v==null)
             throw new Exception ("Informacao ausente");
 
         if (this.primeiro==null/*&&this.ultimo==null*/)
             throw new Exception ("Lista vazia");
 
-        if (i.equals(this.primeiro.getInfo()))
+        if (v.equals(this.primeiro.getInfo()))
         {
             if (this.ultimo==this.primeiro)
                 this.ultimo=null;
@@ -231,7 +232,7 @@ public class ListVoos<Voo> {
             if (atual.getProx()==null)
                 throw new Exception ("Informacao inexistente");
 
-            if (i.equals(atual.getProx().getInfo()))
+            if (v.equals(atual.getProx().getInfo()))
             {
                 if (this.ultimo==atual.getProx())
                     this.ultimo=atual;
@@ -271,9 +272,9 @@ public class ListVoos<Voo> {
     }
 	
     // exercicio que deixado para ser feito; feito!
-    public ListaSimplesDesordenada<X> inversao ()
+    public ListaVoos<X> inversao ()
     {
-        ListaSimplesDesordenada<X> ret = new ListaSimplesDesordenada<X> ();
+        ListaVoos<X> ret = new ListaVoos<X> ();
         
         for (No atual=this.primeiro; atual!=null; atual=atual.getProx())
             // preferi nao usar this.insiraNoInicio pelo bem da eficiencia,
@@ -316,8 +317,8 @@ public class ListVoos<Voo> {
         if (this.getClass()!=obj.getClass())
             return false;
 
-        ListaSimplesDesordenada<X> lista =
-       (ListaSimplesDesordenada<X>)obj;
+            ListaVoos<X> lista =
+       (ListaVoos<X>)obj;
 
         No atualThis =this .primeiro;
         No atualLista=lista.primeiro;
@@ -358,7 +359,7 @@ public class ListVoos<Voo> {
     }
 
     // construtor de copia
-    public ListaSimplesDesordenada (ListaSimplesDesordenada<X> modelo) throws Exception
+    public ListaVoos (ListaVoos<X> modelo) throws Exception
     {
         if (modelo==null)
             throw new Exception ("Modelo ausente");
@@ -383,11 +384,11 @@ public class ListVoos<Voo> {
 
     public Object clone ()
     {
-        ListaSimplesDesordenada<X> ret=null;
+        ListaVoos<X> ret=null;
 
         try
         {
-            ret = new ListaSimplesDesordenada (this);
+            ret = new ListaVoos (this);
         }
         catch (Exception erro)
         {} // sei que this NUNCA é null e o contrutor de copia da erro quando seu parametro é null
