@@ -354,13 +354,10 @@ public class ListaAeroporto <Aeroporto> {
     }
 
     public Object clone() {
-        ListaAeroporto
-        <Aeroporto
-        > ret = null;
+        ListaAeroporto <Aeroporto> ret = null;
 
         try {
-            ret = new ListaAeroporto
-            (this);
+            ret = new ListaAeroporto (this);
         } catch (Exception erro) {
         } // sei que this NUNCA � null e o contrutor de copia da erro quando seu parametro
           // � null
