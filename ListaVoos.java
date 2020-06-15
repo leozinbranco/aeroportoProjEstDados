@@ -113,8 +113,8 @@ public class ListaVoos<X> {
 
         Voo inserir=null;
         if (v instanceof Cloneable)
-            inserir = v.clone(); //meuCloneDeX(i);
-        else
+            inserir = (Voo)v.clone(); //meuCloneDeX(i);
+        else 
             inserir = v;
             
         this.primeiro = new No (inserir,this.primeiro);
@@ -130,7 +130,7 @@ public class ListaVoos<X> {
 
         Voo inserir=null;
         if (v instanceof Cloneable)
-            inserir = v.clone();//meuCloneDeX(i);
+            inserir = (Voo)v.clone();//meuCloneDeX(i);
         else
             inserir = v;
             
@@ -153,7 +153,7 @@ public class ListaVoos<X> {
 
         Voo ret = this.primeiro.getInfo();
         if (ret instanceof Cloneable)
-            ret = ret.clone(); //meuCloneDeX (ret);
+            ret = (Voo)ret.clone(); //meuCloneDeX (ret);
             
         return ret;
     }
@@ -165,7 +165,7 @@ public class ListaVoos<X> {
 
         Voo ret = this.ultimo.getInfo();
         if (ret instanceof Cloneable)
-            ret = v.clone();//meuCloneDeX (ret);
+            ret = (Voo) ret.clone();//meuCloneDeX (ret);
             
         return ret;
     }
@@ -207,7 +207,7 @@ public class ListaVoos<X> {
         this .ultimo=atual;
     }
     
-    public void remova (Voo v) throws Exception
+    public void remova (Voo v) throws Exception //Remoção de um vôo indicado pelo número;
     {
         if (v==null)
             throw new Exception ("Informacao ausente");
@@ -238,6 +238,45 @@ public class ListaVoos<X> {
                     this.ultimo=atual;
 
                 atual.setProx(atual.getProx().getProx());
+
+                return;
+            }
+
+            atual=atual.getProx();
+        }
+    }
+
+    public void remova (int cod) throws Exception //Remoção de um vôo indicado pelo número;
+    {
+        if (cod==0)
+            throw new Exception ("Informacao ausente");
+
+        if (this.primeiro==null/*&&this.ultimo==null*/)
+            throw new Exception ("Lista vazia");
+
+        if (cod == this.primeiro.getInfo().getCodigo())
+        {
+            if (this.ultimo==this.primeiro)
+                this.ultimo=null;
+
+            this.primeiro=this.primeiro.getProx();
+
+            return;
+        }
+
+        No atual=this.primeiro;
+
+        for(;;) // FOR EVER (repete até Exception ou return)
+        {
+            if (atual.getProx()==null)
+                throw new Exception ("Informacao inexistente");  //acabou
+
+            if (cod == atual.getInfo().getCodigo())
+            {
+                if (this.ultimo==atual.getProx())  //verofica se atual é o penúltimo, caso for:
+                    this.ultimo=atual;              //substitui o atual(removido) pelo ultimo
+
+                atual.setProx(atual.getProx().getProx());   //
 
                 return;
             }
@@ -298,7 +337,7 @@ public class ListaVoos<X> {
             ret=ret+atual.getInfo();
 
             if (atual!=this.ultimo)
-                ret=ret+",";
+                ret=ret+", \n";
 
             atual=atual.getProx();
         }

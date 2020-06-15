@@ -25,6 +25,39 @@ public class Voo {
     public void setCodigo(Integer cod) {
         this.codigo = cod;
     }
+
+    public Voo (Voo modelo) throws Exception
+    {
+        if (modelo==null)
+            throw new Exception ("Modelo ausente");
+
+        if (modelo.codigo==null || modelo.aeroporto == null)
+            return; // sai do construtor, pq this.primeiro ja � null
+
+        this.setCodigo(modelo.codigo); 
+        this.setAerporto(modelo.aeroporto);
+        
+    }
+
+    public String toString(){
+        String ret = "";
+        ret = "Voo "+ this.codigo + ":\n Para o Aeroporto: \n" + this.aeroporto  + ",\n "+ "Código do Voo: " + this.codigo;
+        return ret;   
+    }
+
+    public Object clone()
+    {
+        Voo ret=null;
+
+        try
+        {
+            ret = new Voo(this); //(city, siglaAer, voos, cod);
+        }
+        catch (Exception erro)
+        {} // sei que this NUNCA � null e o contrutor de copia da erro quando seu parametro � null
+
+        return ret;
+    }
  
      //fim da classe Voos
 

@@ -1,9 +1,9 @@
 import java.lang.reflect.*;
 
-public class ListaAeroporto <Aeroporto> {
+public class ListaAeroportos {
     private class No {
         private Aeroporto info; // Aeroporto
-        
+
         private No prox;
 
         public No(Aeroporto i, No p) {
@@ -35,8 +35,7 @@ public class ListaAeroporto <Aeroporto> {
 
     private No primeiro, ultimo;
 
-    public ListaAeroporto
-    () {
+    public ListaAeroportos() {
         this.primeiro = null;
         this.ultimo = null;
     }
@@ -73,11 +72,10 @@ public class ListaAeroporto <Aeroporto> {
         return ret;
     }
 
-    private Aeroporto meuCloneDeAeroporto (Aeroporto Aeroporto) {
+    private Aeroporto meuCloneDeAeroporto(Aeroporto Aeroporto) {
         // return (Aeroporto)Aeroporto.clone();
 
-        Aeroporto
-        ret = null;
+        Aeroporto ret = null;
 
         try {
             Class<?> classe = Aeroporto.getClass();
@@ -88,14 +86,13 @@ public class ListaAeroporto <Aeroporto> {
         } catch (Exception erro) {
         } // pq sei que estou chamando clone de um objeto que � Cloneable e, portanto, nao
           // h� risco do m�todo n�o eAeroporto
-         //istir ou de ser chamado com parametros
+          // istir ou de ser chamado com parametros
           // errado
 
         return ret;
     }
 
-    public void insiraNoInicio(Aeroporto
-     i) throws Exception {
+    public void insiraNoInicio(Aeroporto i) throws Exception {
         if (i == null)
             throw new Exception("Informacao ausente");
 
@@ -221,7 +218,6 @@ public class ListaAeroporto <Aeroporto> {
         }
     }
 
-    
     public void invertaSe() {
         if (this.primeiro == null)
             return; // lista vazia; nao h� o que inverter
@@ -244,15 +240,15 @@ public class ListaAeroporto <Aeroporto> {
         this.ultimo = backup;
     }
 
-    public ListaAeroporto<Aeroporto> inversao() {
-        ListaAeroporto<Aeroporto> ret = new ListaAeroporto <Aeroporto>();
+    public ListaAeroportos inversao() {
+        ListaAeroportos ret = new ListaAeroportos();
 
         for (No atual = this.primeiro; atual != null; atual = atual.getprox())
             // preferi nao usar this.insiraNoInicio pelo bem da eficiencia,
             // economizando tempo, deiAeroporto
-            //ando de validar, e economizando
+            // ando de validar, e economizando
             // mem�ria e tempo, deiAeroporto
-            //ando de clonar; e fica a pergunta:
+            // ando de clonar; e fica a pergunta:
             // entendem porque n�o � necessario clonar? Nao entendendo,
             // monitoria!
             ret.primeiro = new No(atual.getInfo(), ret.primeiro);
@@ -269,7 +265,7 @@ public class ListaAeroporto <Aeroporto> {
             ret = ret + atual.getInfo();
 
             if (atual != this.ultimo)
-                ret = ret + ",";
+                ret = ret + ". \n";
 
             atual = atual.getprox();
         }
@@ -287,11 +283,7 @@ public class ListaAeroporto <Aeroporto> {
         if (this.getClass() != obj.getClass())
             return false;
 
-        ListaAeroporto
-        <Aeroporto
-        > lista = (ListaAeroporto
-        <Aeroporto
-        >) obj;
+        ListaAeroportos lista = (ListaAeroportos) obj;
 
         No atualThis = this.primeiro;
         No atualLista = lista.primeiro;
@@ -329,10 +321,7 @@ public class ListaAeroporto <Aeroporto> {
     }
 
     // construtor de copia
-    public ListaAeroporto
-    (ListaAeroporto
-    <Aeroporto
-    > modelo) throws Exception {
+    public ListaAeroportos (ListaAeroportos modelo) throws Exception {
         if (modelo == null)
             throw new Exception("Modelo ausente");
 
@@ -354,10 +343,10 @@ public class ListaAeroporto <Aeroporto> {
     }
 
     public Object clone() {
-        ListaAeroporto <Aeroporto> ret = null;
+        ListaAeroportos ret = null;
 
         try {
-            ret = new ListaAeroporto (this);
+            ret = new ListaAeroportos(this);
         } catch (Exception erro) {
         } // sei que this NUNCA � null e o contrutor de copia da erro quando seu parametro
           // � null

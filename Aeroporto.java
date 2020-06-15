@@ -47,7 +47,7 @@ public class Aeroporto {
 
     public String toString(){
         String ret = "";
-        ret = siglaAer + ", " + city;
+        ret = "Sigla " + siglaAer + ", "+ "Cidade " + city;
         return ret;   
     }
 
