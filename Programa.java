@@ -28,7 +28,7 @@ public class Programa {
             try {
                 String a = new BufferedReader(new InputStreamReader(System.in)).readLine();
 
-                System.out.println(a);
+    //            System.out.println(a);
 
                 switch (a) {
                     case "1": {
@@ -99,8 +99,10 @@ public class Programa {
                         System.out.println("Digite o codigo do voo a ser excluido");
                         String codigo_voo = new BufferedReader(new InputStreamReader(System.in)).readLine();
 
-                        if (lista_de_aeroportos.excluiVoo(Integer.parseInt(codigo_voo)) == null)
+                        if (lista_de_aeroportos.excluiVoo(Integer.parseInt(codigo_voo)) == false)
                             System.out.println("Voo nao encontrado em nenhum aeroporto");
+                        else
+                        System.out.println("Voo excluido com sucesso!");
 
                     }
                         break;
@@ -124,7 +126,7 @@ public class Programa {
                     }
                         break;
                     default: {
-                        System.out.print("namora comigo leo ");
+                        System.out.print("nao ");
 
                     }
                         break;

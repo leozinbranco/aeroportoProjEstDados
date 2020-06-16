@@ -41,7 +41,7 @@ public class Voo {
 
     public String toString(){
         String ret = "";
-        ret = "Voo "+ this.codigo + ":\n Para o Aeroporto: \n" + this.aeroporto  + ",\n "+ "Código do Voo: " + this.codigo;
+        ret = "Voo "+ this.codigo + "\n Destino: " + this.aeroporto.getCity() + " ( "+ this.aeroporto.getSiglaAer() + " ) " + ",\n "+ "Código do Voo: " + this.codigo;
         return ret;   
     }
 

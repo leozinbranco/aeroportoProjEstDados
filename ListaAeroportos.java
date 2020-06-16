@@ -76,20 +76,27 @@ public class ListaAeroportos {
         return null;
     }
 
-    public Aeroporto excluiVoo(int codigo_voo) throws Exception {
+    public boolean excluiVoo(int codigo_voo) throws Exception {
         if (codigo_voo == 0)
             throw new Exception("Informacao ausente");
 
         No atual = this.primeiro;
 
         while (atual != null) {
-            if (codigo_voo == (atual.getInfo().getListVoos().procura(codigo_voo).getCodigo()))
+            //System.out.println(atual.getInfo().getListVoos().procura(codigo_voo));
+
+            if (atual.getInfo().getListVoos().procura(codigo_voo) != null ) 
+            {
                 atual.getInfo().getListVoos().remova(codigo_voo);
+                return true;
+            }
+            
 
             atual = atual.getprox();
+            
         }
 
-        return null;
+        return false;
     }
 
     public int getQtd() {
