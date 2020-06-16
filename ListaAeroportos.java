@@ -60,6 +60,38 @@ public class ListaAeroportos {
         return false;
     }
 
+    public Aeroporto procura(int codigo) throws Exception {
+        if (codigo == 0)
+            throw new Exception("Informacao ausente");
+
+        No atual = this.primeiro;
+
+        while (atual != null) {
+            if (codigo == (atual.getInfo().getCod()))
+                return atual.getInfo();
+
+            atual = atual.getprox();
+        }
+
+        return null;
+    }
+
+    public Aeroporto excluiVoo(int codigo_voo) throws Exception {
+        if (codigo_voo == 0)
+            throw new Exception("Informacao ausente");
+
+        No atual = this.primeiro;
+
+        while (atual != null) {
+            if (codigo_voo == (atual.getInfo().getListVoos().procura(codigo_voo).getCodigo()))
+                atual.getInfo().getListVoos().remova(codigo_voo);
+
+            atual = atual.getprox();
+        }
+
+        return null;
+    }
+
     public int getQtd() {
         No atual = this.primeiro;
         int ret = 0;
@@ -262,7 +294,7 @@ public class ListaAeroportos {
         No atual = this.primeiro;
 
         while (atual != null) {
-            ret = ret + atual.getInfo();
+            ret = ret + atual.getInfo().toString();
 
             if (atual != this.ultimo)
                 ret = ret + ". \n";

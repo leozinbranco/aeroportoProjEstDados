@@ -47,7 +47,12 @@ public class Aeroporto {
 
     public String toString(){
         String ret = "";
-        ret = "Sigla " + siglaAer + ", "+ "Cidade " + city;
+        ret = "Sigla " + siglaAer + ", "+ "Cidade " + city + "Codigo" + codAer;
+
+        
+        //ret += "Voos desse aeroporto: " + voos.toString();
+        
+
         return ret;   
     }
 

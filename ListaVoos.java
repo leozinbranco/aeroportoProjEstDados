@@ -72,6 +72,22 @@ public class ListaVoos<X> {
         return false;
     }
 
+    public Voo procura(int codigo) throws Exception {
+        if (codigo == 0)
+            throw new Exception("Informacao ausente");
+
+        No atual = this.primeiro;
+
+        while (atual != null) {
+            if (codigo == (atual.getInfo().getCodigo()))
+                return atual.getInfo();
+
+            atual = atual.getProx();
+        }
+
+        return null;
+    }
+
     public int getQtd ()
     {
         No  atual=this.primeiro;
@@ -334,7 +350,7 @@ public class ListaVoos<X> {
 
         while (atual!=null)
         {
-            ret=ret+atual.getInfo();
+            ret=ret+atual.getInfo().toString();
 
             if (atual!=this.ultimo)
                 ret=ret+", \n";
