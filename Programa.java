@@ -11,7 +11,7 @@ public class Programa {
         boolean continuar_execucao = true;
         ListaAeroportos lista_de_aeroportos = new ListaAeroportos();
 
-       populaDados(lista_de_aeroportos);
+      // populaDados(lista_de_aeroportos); 
 
         while (continuar_execucao) {
 
@@ -26,11 +26,9 @@ public class Programa {
             System.out.println("Pressione o número da opção que deseja executar: \n");
 
             try {
-                String a = new BufferedReader(new InputStreamReader(System.in)).readLine();
+                String opcao_escolhida = new BufferedReader(new InputStreamReader(System.in)).readLine();
 
-                // System.out.println(a);
-
-                switch (a) {
+                switch (opcao_escolhida) {
                     case "1": {
 
                         System.out.println("1. Cadastramento de um novo aeroporto");
