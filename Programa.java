@@ -11,7 +11,7 @@ public class Programa {
         boolean continuar_execucao = true;
         ListaAeroportos lista_de_aeroportos = new ListaAeroportos();
 
-       // populaDados(lista_de_aeroportos);
+       populaDados(lista_de_aeroportos);
 
         while (continuar_execucao) {
 
@@ -117,10 +117,10 @@ public class Programa {
                         System.out.println("Digite o codigo do voo a ser excluido");
                         String codigo_voo = new BufferedReader(new InputStreamReader(System.in)).readLine();
 
-                        if (lista_de_aeroportos.excluiVoo(Integer.parseInt(codigo_voo)) == false)
-                            System.out.println("Voo nao encontrado em nenhum aeroporto");
-                        else
+                        if (lista_de_aeroportos.excluiVoo(Integer.parseInt(codigo_voo)))
                             System.out.println("Voo excluído com sucesso!");
+                        else
+                            System.out.println("Voo nao encontrado em nenhum aeroporto");
 
                     }
                         break;
