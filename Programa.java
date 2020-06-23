@@ -51,7 +51,7 @@ public class Programa {
 
                         lista_de_aeroportos.insiraNoFim(novo_aeroporto);
 
-                        lista_de_aeroportos.toString();
+                        System.out.println(lista_de_aeroportos.toString());
 
                     }
                         break;
@@ -102,7 +102,7 @@ public class Programa {
                         if (lista_de_aeroportos.excluiVoo(Integer.parseInt(codigo_voo)) == false)
                             System.out.println("Voo nao encontrado em nenhum aeroporto");
                         else
-                        System.out.println("Voo excluido com sucesso!");
+                        System.out.println("Voo excluído com sucesso!");
 
                     }
                         break;
@@ -113,10 +113,18 @@ public class Programa {
                         System.out.println("Digite o codigo do Aeroporto");
                         String codigo_aeroporto = new BufferedReader(new InputStreamReader(System.in)).readLine();
 
+                        
                         Aeroporto aeroporto_buscado = lista_de_aeroportos.procura(Integer.parseInt(codigo_aeroporto));
 
-                        System.out.println("Lista de voos do aeroporto " + aeroporto_buscado.getSiglaAer());
-                        System.out.println(aeroporto_buscado.getListVoos().toString());
+                        if(aeroporto_buscado == null)
+                        {                            
+                        System.out.println("Código Inválido!");
+                        }
+                        else{
+                            System.out.println("Lista de voos do aeroporto " + aeroporto_buscado.getSiglaAer());
+                            System.out.println(aeroporto_buscado.getListVoos().toString());
+                        }
+                        
 
                     }
                         break;
@@ -126,7 +134,7 @@ public class Programa {
                     }
                         break;
                     default: {
-                        System.out.print("nao ");
+                        System.out.print("Opção Inválida!");
 
                     }
                         break;

@@ -74,7 +74,7 @@ public class ListaVoos<X> {
 
     public Voo procura(int codigo) throws Exception {
         if (codigo == 0)
-            throw new Exception("Informacao ausente");
+            throw new Exception("Informacao ausente3");
 
         No atual = this.primeiro;
 
@@ -265,7 +265,7 @@ public class ListaVoos<X> {
     public void remova (int cod) throws Exception //Remoção de um vôo indicado pelo número;
     {
         if (cod==0)
-            throw new Exception ("Informacao ausente");
+            throw new Exception ("Informacao ausente1");
 
         if (this.primeiro==null/*&&this.ultimo==null*/)
             throw new Exception ("Lista vazia");

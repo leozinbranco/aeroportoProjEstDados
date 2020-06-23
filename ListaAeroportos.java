@@ -78,7 +78,7 @@ public class ListaAeroportos {
 
     public boolean excluiVoo(int codigo_voo) throws Exception {
         if (codigo_voo == 0)
-            throw new Exception("Informacao ausente");
+            throw new Exception("Informacao ausente2");
 
         No atual = this.primeiro;
 
